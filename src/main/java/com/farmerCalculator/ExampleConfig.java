@@ -1,4 +1,4 @@
-package com.example;
+package com.farmerCalculator;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
@@ -14,6 +14,6 @@ public interface ExampleConfig extends Config
 	)
 	default String greeting()
 	{
-		return "Hello";
+		return "not cool alex.";
 	}
 }
