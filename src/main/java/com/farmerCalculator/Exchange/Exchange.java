@@ -1,11 +1,11 @@
 package com.farmerCalculator.Exchange;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static com.farmerCalculator.Exchange.UrlHandler.getRawData;
+import static com.farmerCalculator.Exchange.ExchangeJsonDataHandler.*;
 
 public class Exchange {
 
@@ -13,8 +13,9 @@ public class Exchange {
     private static final String ExchangeBaseAPI = "https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=";
 
     public static int getValueForItem(int itemId) {
+        // TODO somehow verify the json response is actually ok.
         String rawData = getRawData(ExchangeBaseAPI + itemId);
-        return 1;
+        return ExtractCurrentIntPrice(rawData);
     }
 
     public static Map<String, Integer> getValueForItems(List<String> items) {

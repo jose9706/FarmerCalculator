@@ -12,8 +12,21 @@ public class ExchangeJsonDataHandler {
        return obj.get("item").getAsJsonObject().get(token).getAsString();
     }
 
-    public static String ExtractCurrentPrice(String rawData) {
+    public static String ExtractCurrentStringPrice(String rawData) {
         JsonObject obj = new JsonParser().parse(rawData).getAsJsonObject();
+        // Based on json payload format.
         return obj.get("item").getAsJsonObject().get("current").getAsJsonObject().get("price").getAsString();
+    }
+
+    public static int ExtractCurrentIntPrice(String rawData) {
+        JsonObject obj = new JsonParser().parse(rawData).getAsJsonObject();
+        // Based on json payload format.
+        String price = obj.get("item").getAsJsonObject().get("current").getAsJsonObject().get("price").getAsString();
+        return Integer.parseInt(formatPriceString(price));
+    }
+
+    // Removes commas from price.
+    private static String formatPriceString(String price) {
+        return price.replace(",", "");
     }
 }

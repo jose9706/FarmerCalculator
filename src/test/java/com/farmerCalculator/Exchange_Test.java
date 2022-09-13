@@ -1,16 +1,37 @@
 package com.farmerCalculator;
 
+import com.farmerCalculator.Exchange.Exchange;
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.farmerCalculator.Exchange.ExchangeJsonDataHandler.ExtractCurrentPrice;
-import static com.farmerCalculator.Exchange.ExchangeJsonDataHandler.ExtractTokenDataFromJsonData;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Exchange_Test
 {
     @Test
     public void GetRannarTest_Pass() {
-        String value = ExtractCurrentPrice("{\"item\":{\"icon\":\"https://secure.runescape.com/m=itemdb_oldschool/1662647178079_obj_sprite.gif?id=257\",\"icon_large\":\"https://secure.runescape.com/m=itemdb_oldschool/1662647178079_obj_big.gif?id=257\",\"id\":257,\"type\":\"Default\",\"typeIcon\":\"https://www.runescape.com/img/categories/Default\",\"name\":\"Ranarr weed\",\"description\":\"A useful herb.\",\"current\":{\"trend\":\"neutral\",\"price\":\"7,306\"},\"today\":{\"trend\":\"negative\",\"price\":\"- 5\"},\"members\":\"true\",\"day30\":{\"trend\":\"negative\",\"change\":\"-19.0%\"},\"day90\":{\"trend\":\"negative\",\"change\":\"-21.0%\"},\"day180\":{\"trend\":\"negative\",\"change\":\"-21.0%\"}}}");
-        System.out.println(value);
+        // Rannar weed item id.
+        int itemValue = Exchange.getValueForItem(257);
+        Assert.assertTrue(itemValue > 0);
+    }
+
+    // Supposed to make sure when an invalid id is used an except is thrown.
+    @Test(expected = RuntimeException.class)
+    public void GetInvalidId_Throws() {
+        Exchange.getValueForItem(258);
+    }
+
+    @Test
+    public void GetSeveralItemPrices_Pass() {
+        List<String> items = new ArrayList<String>();
+        items.add("257");
+        items.add("259");
+        items.add("261");
+        Map<String, Integer> prices = Exchange.getValueForItems(items);
+        Assert.assertNotNull(prices);
+        Assert.assertEquals(3, items.size());
     }
 
 }
