@@ -22,11 +22,8 @@ public class ExchangeJsonDataHandler {
         JsonObject obj = new JsonParser().parse(rawData).getAsJsonObject();
         // Based on json payload format.
         String price = obj.get("item").getAsJsonObject().get("current").getAsJsonObject().get("price").getAsString();
-        return Integer.parseInt(formatPriceString(price));
+        return PriceParser.GetPrice(price);
     }
 
     // Removes commas from price.
-    private static String formatPriceString(String price) {
-        return price.replace(",", "");
-    }
 }

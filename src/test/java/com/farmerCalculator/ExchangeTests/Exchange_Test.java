@@ -1,4 +1,4 @@
-package com.farmerCalculator;
+package com.farmerCalculator.ExchangeTests;
 
 import com.farmerCalculator.Exchange.Exchange;
 import org.junit.Assert;
