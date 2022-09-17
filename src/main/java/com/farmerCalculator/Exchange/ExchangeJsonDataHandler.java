@@ -24,6 +24,4 @@ public class ExchangeJsonDataHandler {
         String price = obj.get("item").getAsJsonObject().get("current").getAsJsonObject().get("price").getAsString();
         return PriceParser.GetPrice(price);
     }
-
-    // Removes commas from price.
 }

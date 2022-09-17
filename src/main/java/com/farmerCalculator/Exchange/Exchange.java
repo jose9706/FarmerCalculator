@@ -9,8 +9,7 @@ import static com.farmerCalculator.Exchange.ExchangeJsonDataHandler.*;
 
 public class Exchange {
 
-    public static HashMap<Integer, Integer> cache = new HashMap<Integer, Integer>();
-    private static final String ExchangeBaseAPI = "https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=";
+    public static HashMap<Integer, Integer> cache = new HashMap<Integer, Integer>();    private static final String ExchangeBaseAPI = "https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=";
 
     public static int getValueForItem(int itemId) {
         // TODO somehow verify the json response is actually ok.
@@ -23,7 +22,4 @@ public class Exchange {
         items.forEach((item) -> {results.put(item, getValueForItem(Integer.parseInt(item)));});
         return results;
     }
-    private static final int BILLION = 1000000000;
-    private static final int MILLION = 1000000;
-    private static final int THOUSAND = 1000;
 }
